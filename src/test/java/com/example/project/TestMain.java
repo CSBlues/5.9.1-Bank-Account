@@ -40,4 +40,25 @@ public class TestMain {
         acc.setBalance(10.0);
         assertEquals("Scott",acc.getBalance(), "Expected mutator method setBalance to change balance to 10.0");
     }
+    @Test
+    public void testOverdraw()
+    {
+        BankAccount acc = new BankAccount();
+        acc.withdraw(10.0);
+        assertEquals(0.0, acc.getBalance(), "The withdraw method should not withdraw money if the withdrawal amount is greater than the balance.");
+    }
+    @Test
+    public void testWithdraw()
+    {
+        BankAccount acc = new BankAccount("test",1,100.0);
+        acc.withdraw(10.0);
+        assertEquals(90.0, acc.getBalance(), "The withdraw method should subtract the withdrawal amount parameter from the balance. Expected 100.0 - 10.0 = 90.0.");
+    }
+    @Test
+    public void testDeposit()
+    {
+        BankAccount acc = new BankAccount("test",1,100.0);
+        acc.deposit(15.0);
+        assertEquals(115.0, acc.getBalance(), "The balance method should add the deposit amount parameter to the balance. Expected 100.0 + 15.0 = 115.0.");
+    }
 }
